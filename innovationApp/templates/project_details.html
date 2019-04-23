@@ -1,0 +1,18 @@
+
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ project.nom_du_projet }}</h1>
+    <ul>
+        <li>Createur: {{ project.createur.nom }} {{ project.createur.prenom }}</li>
+        <li>Besoins: {{ project.besoins }}</li>
+        <li>Description: {{ project.description }}</li>
+        <li>Duree estimee: {{ project.duree_du_projet }}</li>
+        <li>validiter :
+            {% if project.est_valide %}
+                valide
+            {% else %}
+            non valide
+            {% endif %}
+        </li>
+    </ul>
+{% endblock %}

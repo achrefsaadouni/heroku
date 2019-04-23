@@ -1,0 +1,13 @@
+
+
+
+{% extends "base.html" %}
+{% block content %}
+    <h1>Login Page</h1>
+<form action="{% url 'authenticate' %}" method="post" style="width: 400px;height: 400px">
+{% csrf_token %}
+    <input type="text" placeholder="Username" name="username" class="form-control"><br><br>
+    <input type="password" placeholder="Password" name="password" class="form-control"><br><br>
+    <input type="submit" value="Login" class="bg-success">
+</form>
+{% endblock %}

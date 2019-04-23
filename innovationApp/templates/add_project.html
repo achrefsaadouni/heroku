@@ -1,0 +1,13 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Nouveau Projet</h1>
+{% if msg_erreur %}<p><strong>{{ msg_erreur }}</strong></p>
+{% endif %}
+    <form action="{% url 'submitProject' %}" method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Add project" />
+</form>
+{% endblock %}

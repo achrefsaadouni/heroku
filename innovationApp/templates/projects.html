@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+    {% if user.is_authenticated %}
+<h1>List des Projets</h1> <a href="{% url 'addProject' %}" class="btn btn-info">Add Project</a>
+ <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>Titre du projet:</th>
+        <th>Createur:</th>
+        <th>Detail</th>
+          <th>Update</th>
+          <th>valider</th>
+          <th>Rejoindre</th>
+      </tr>
+    </thead>
+  <tbody>
+  {% for p in projects_list %}
+      <tr>
+        <td>{{ p.nom_du_projet }}</td>
+      <td>{{ p.createur }}</td>
+          <td><a href="{% url 'detail' p.id %}" class="btn btn-info">More</a></td>
+          <td><a href="{% url 'updateProject' p.id %}" class="btn btn-info">Modifier</a></td>
+          <td><a href="{% url 'updateProject' p.id %}" class="btn btn-info">Valider</a></td>
+          <td><a href="{% url 'updateProject' p.id %}" class="btn btn-info">Rejoindre</a></td>
+      </tr>
+{% endfor %}
+          </tbody>
+  </table>
+
+
+    {% else %}
+            <div class="col-md-offset-3">
+        <form action="{% url 'login' %}" method="post">
+{% csrf_token %}
+            <h1>you need to be connected </h1>
+            <br><br>
+    <input type="submit" value="login" class="bg-success">
+</form>
+            </div>
+    {% endif %}
+{% endblock %}

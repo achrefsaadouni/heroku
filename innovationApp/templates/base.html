@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <script src="{% static "js/jquery-1.11.1.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}"/>
+    <link rel="stylesheet" href="{% static "css/css.css" %}"/>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="nav-side-menu">
+    <div class="brand">Esprit Innovation Hub</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+        <div class="menu-list">
+
+            <ul id="menu-content" class="menu-content collapse out">
+                <li>
+                  <a href="/user">
+                  <i class="fa fa-dashboard fa-lg"></i> Dashboard
+                  </a>
+                </li>
+
+
+
+
+                 <li>
+                  <a href="/user/projects">
+                  <i class="fa fa-archive fa-lg"></i> Projects
+                  </a>
+                  </li>
+
+
+                      <li>
+                  <a href="/user/login">
+                  <i class="fa fa-user fa-lg"></i> Login
+                  </a>
+                  </li>
+
+            </ul>
+     </div>
+</div>
+<div class="row">
+    {% if user.is_authenticated %}
+    <div class="col-md-offset-3">
+        <form action="{% url 'logout' %}" method="post">
+{% csrf_token %}
+            <br><br>
+    <input type="submit" value="logout" class="bg-success">
+</form>
+    </div>
+
+    {% endif %}
+
+</div>
+<div class="row">
+<div class="col-md-offset-3">
+{% block content %}
+  {% endblock %}
+</div></div>
+</body>
+</html>
